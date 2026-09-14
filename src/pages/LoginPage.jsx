@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Mail } from 'lucide-react';
+import { Mail, KeyRound, Sparkles } from 'lucide-react';
 import { HeaderNav } from '../components/layout/HeaderNav';
 import { FooterStrip } from '../components/layout/FooterStrip';
 import { EarthVisual } from '../components/auth/EarthVisual';
@@ -17,6 +17,12 @@ export const LoginPage = () => {
   const [rememberMe, setRememberMe] = useState(true);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const handleFillDemo = () => {
+    setEmail('demo@satquery.ai');
+    setPassword('SatQuery@2026');
+    setError('');
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -66,9 +72,47 @@ export const LoginPage = () => {
           <div className="auth-card-container">
             <AuthCard>
               <h2 className="auth-heading">Welcome back</h2>
-              <p className="subtitle" style={{ marginBottom: '24px' }}>
+              <p className="subtitle" style={{ marginBottom: '20px' }}>
                 Sign in to continue your satellite analysis.
               </p>
+
+              {/* Quick Demo Credentials Box */}
+              <div
+                style={{
+                  marginBottom: '20px',
+                  padding: '12px 14px',
+                  background: 'rgba(9, 122, 254, 0.12)',
+                  border: '1px solid var(--sq-blue)',
+                  borderRadius: 'var(--sq-radius-sm)',
+                  fontSize: '12px'
+                }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                  <span style={{ fontWeight: '700', color: 'var(--sq-cyan)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <KeyRound size={14} /> Demo Credentials
+                  </span>
+                  <button
+                    type="button"
+                    onClick={handleFillDemo}
+                    style={{
+                      padding: '4px 10px',
+                      borderRadius: '4px',
+                      background: 'var(--sq-blue)',
+                      border: 'none',
+                      color: 'var(--sq-white)',
+                      fontSize: '11px',
+                      fontWeight: '600',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    Auto-Fill Demo
+                  </button>
+                </div>
+                <div style={{ color: 'var(--sq-text-secondary)', fontSize: '11px', display: 'flex', gap: '16px' }}>
+                  <div>Email: <strong style={{ color: 'var(--sq-white)' }}>demo@satquery.ai</strong></div>
+                  <div>Pass: <strong style={{ color: 'var(--sq-white)' }}>SatQuery@2026</strong></div>
+                </div>
+              </div>
 
               {error && <div className="field-error-msg" style={{ marginBottom: '16px' }}>{error}</div>}
 
