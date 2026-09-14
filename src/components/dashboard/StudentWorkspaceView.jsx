@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { BookOpen, CheckCircle, HelpCircle, Award, Play } from 'lucide-react';
+import { BookOpen, CheckCircle, HelpCircle, Award } from 'lucide-react';
 
-export const StudentWorkspaceView = ({ activeTool }) => {
+export const StudentWorkspaceView = ({ activeTool: _activeTool }) => {
   const [activeStep, setActiveStep] = useState(2);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
 

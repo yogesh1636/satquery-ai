@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Mail, KeyRound, Sparkles } from 'lucide-react';
+import { Mail, KeyRound } from 'lucide-react';
 import { HeaderNav } from '../components/layout/HeaderNav';
 import { FooterStrip } from '../components/layout/FooterStrip';
 import { EarthVisual } from '../components/auth/EarthVisual';

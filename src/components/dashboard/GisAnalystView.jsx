@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Map, Layers, CheckSquare, Square, Download, Filter } from 'lucide-react';
+import { CheckSquare, Square } from 'lucide-react';
 
 export const GisAnalystView = () => {
   const [layers, setLayers] = useState({

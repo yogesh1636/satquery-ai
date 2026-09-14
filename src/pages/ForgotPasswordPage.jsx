@@ -92,7 +92,7 @@ export const ForgotPasswordPage = () => {
                     }}
                   >
                     <Mail size={20} style={{ color: 'var(--sq-cyan)', flexShrink: 0 }} />
-                    <span>We'll send you a secure link to reset your password.</span>
+                    <span>We&apos;ll send you a secure link to reset your password.</span>
                   </div>
 
                   <div style={{ marginTop: '24px', textAlign: 'center' }}>

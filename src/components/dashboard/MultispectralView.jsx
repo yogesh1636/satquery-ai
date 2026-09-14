@@ -1,7 +1,7 @@
 import React from 'react';
-import { Layers, Eye, Sliders, Activity } from 'lucide-react';
+import { Layers } from 'lucide-react';
 
-export const MultispectralView = ({ activeDataset, selectedLayer, setSelectedLayer, resolution, setResolution, selectedBands, setSelectedBands }) => {
+export const MultispectralView = ({ activeDataset: _activeDataset, selectedLayer, setSelectedLayer, resolution, setResolution, selectedBands, setSelectedBands }) => {
   const layers = [
     { id: 'multispectral-rgb', label: 'Multispectral RGB' },
     { id: 'ndvi-overlay', label: 'NDVI Vegetation Overlay' },

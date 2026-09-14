@@ -146,7 +146,7 @@ export const EarthVisual = ({ headline, highlightText, subtitle, features, quote
         {quote && (
           <div className="quote-box">
             <Sparkles size={16} />
-            <span>"{quote}"</span>
+            <span>&quot;{quote}&quot;</span>
           </div>
         )}
       </div>

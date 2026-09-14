@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Sliders, AlertTriangle, ShieldCheck, Calendar, ArrowRight } from 'lucide-react';
 import { EARTH_BG_URL } from '../../config/assets';
 
 export const ChangeDetectionView = ({ activeDataset }) => {
   const [sliderPos, setSliderPos] = useState(50);
-  const [timePeriod, setTimePeriod] = useState('2024-09 vs 2026-09');
+  const [timePeriod] = useState('2024-09 vs 2026-09');
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', padding: '16px' }}>

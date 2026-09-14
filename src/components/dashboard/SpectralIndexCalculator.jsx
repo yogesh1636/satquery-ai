@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Calculator, Sparkles, Activity } from 'lucide-react';
 
 export const SpectralIndexCalculator = () => {
   const [selectedIndex, setSelectedIndex] = useState('NDVI');
@@ -143,6 +142,22 @@ export const SpectralIndexCalculator = () => {
                 step="0.01"
                 value={green}
                 onChange={(e) => setGreen(Number(e.target.value))}
+                style={{ width: '100%', accentColor: 'var(--sq-blue)' }}
+              />
+            </div>
+
+            <div>
+              <label style={{ fontSize: '11px', color: 'var(--sq-text-secondary)', display: 'flex', justifyContent: 'space-between' }}>
+                <span>SWIR Reflectance (Band 11):</span>
+                <span>{swir}</span>
+              </label>
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                value={swir}
+                onChange={(e) => setSwir(Number(e.target.value))}
                 style={{ width: '100%', accentColor: 'var(--sq-blue)' }}
               />
             </div>

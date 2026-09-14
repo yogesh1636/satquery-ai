@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Building2, Shield, Users, FileText, Activity, CheckCircle } from 'lucide-react';
+import { Shield, CheckCircle } from 'lucide-react';
 
 export const OrganizationView = () => {
   const [activeProject, setActiveProject] = useState('amazon');

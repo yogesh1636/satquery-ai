@@ -1,7 +1,7 @@
 import React from 'react';
 import { CheckCircle2, Info } from 'lucide-react';
 
-export const ToastNotification = ({ message, type = 'success', onClose }) => {
+export const ToastNotification = ({ message, type = 'success', onClose: _onClose }) => {
   if (!message) return null;
 
   return (

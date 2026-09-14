@@ -5,7 +5,7 @@ import { FooterStrip } from '../components/layout/FooterStrip';
 import { RoleCard } from '../components/auth/RoleCard';
 import { PrimaryButton } from '../components/auth/PrimaryButton';
 import { rolesConfig } from '../config/rolesConfig';
-import { setUserRole, getUserRole, loginUser } from '../utils/auth';
+import { getUserRole, loginUser } from '../utils/auth';
 
 export const OnboardingRolePage = () => {
   const navigate = useNavigate();

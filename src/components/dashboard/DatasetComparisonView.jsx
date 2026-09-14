@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Database, ArrowLeftRight, CheckCircle2 } from 'lucide-react';
+import { ArrowLeftRight } from 'lucide-react';
 
 export const DatasetComparisonView = () => {
   const datasetDetails = {
