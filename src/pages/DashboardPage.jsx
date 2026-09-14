@@ -30,7 +30,9 @@ import {
   Database,
   BarChart3,
   Loader2,
-  CheckCircle2
+  CheckCircle2,
+  Menu,
+  X
 } from 'lucide-react';
 
 const iconMap = {
@@ -45,6 +47,9 @@ export const DashboardPage = () => {
   const navigate = useNavigate();
   const role = getRoleById(roleId);
   const IconComp = iconMap[role.iconName] || Map;
+
+  // Mobile Menu Drawer State
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Active States
   const [activeToolId, setActiveToolId] = useState(role.defaultTool || role.focusAreas[0].id);
@@ -161,55 +166,108 @@ export const DashboardPage = () => {
 
       {/* Dashboard Top Navbar */}
       <nav className="dashboard-nav">
-        <BrandLogo size="md" />
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+          <BrandLogo size="md" />
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <div className="dashboard-role-badge">
-            <IconComp size={14} style={{ display: 'inline', marginRight: '6px', verticalAlign: 'middle' }} />
-            <span>{role.label} Workspace</span>
+          {/* Desktop Nav Controls */}
+          <div className="dash-nav-desktop">
+            <div className="dashboard-role-badge">
+              <IconComp size={14} style={{ display: 'inline', marginRight: '6px', verticalAlign: 'middle' }} />
+              <span>{role.label} Workspace</span>
+            </div>
+
+            <div style={{ display: 'flex', gap: '6px' }}>
+              {Object.values(rolesConfig).map((r) => (
+                <button
+                  key={r.id}
+                  onClick={() => handleRoleSwitch(r.id)}
+                  aria-label={`Switch to ${r.label} Workspace`}
+                  style={{
+                    padding: '6px 10px',
+                    borderRadius: '6px',
+                    border: r.id === role.id ? '1px solid var(--sq-blue)' : '1px solid transparent',
+                    background: r.id === role.id ? 'rgba(9, 122, 254, 0.2)' : 'transparent',
+                    color: r.id === role.id ? 'var(--sq-white)' : 'var(--sq-text-muted)',
+                    fontSize: '11px',
+                    fontWeight: '500',
+                    cursor: 'pointer',
+                    transition: 'all 180ms ease'
+                  }}
+                >
+                  {r.label}
+                </button>
+              ))}
+            </div>
+
+            <button
+              onClick={handleSignOut}
+              aria-label="Sign Out"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                padding: '6px 12px',
+                borderRadius: '6px',
+                background: 'rgba(0, 22, 46, 0.8)',
+                border: '1px solid var(--sq-border)',
+                color: 'var(--sq-text-secondary)',
+                fontSize: '12px',
+                cursor: 'pointer'
+              }}
+            >
+              <LogOut size={14} />
+              <span>Sign Out</span>
+            </button>
           </div>
 
-          <div style={{ display: 'flex', gap: '6px' }}>
-            {Object.values(rolesConfig).map((r) => (
-              <button
-                key={r.id}
-                onClick={() => handleRoleSwitch(r.id)}
-                style={{
-                  padding: '6px 10px',
-                  borderRadius: '6px',
-                  border: r.id === role.id ? '1px solid var(--sq-blue)' : '1px solid transparent',
-                  background: r.id === role.id ? 'rgba(9, 122, 254, 0.2)' : 'transparent',
-                  color: r.id === role.id ? 'var(--sq-white)' : 'var(--sq-text-muted)',
-                  fontSize: '11px',
-                  fontWeight: '500',
-                  cursor: 'pointer',
-                  transition: 'all 180ms ease'
-                }}
-              >
-                {r.label}
-              </button>
-            ))}
-          </div>
-
+          {/* Mobile Hamburger Toggle Button */}
           <button
-            onClick={handleSignOut}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              padding: '6px 12px',
-              borderRadius: '6px',
-              background: 'rgba(0, 22, 46, 0.8)',
-              border: '1px solid var(--sq-border)',
-              color: 'var(--sq-text-secondary)',
-              fontSize: '12px',
-              cursor: 'pointer'
-            }}
+            className="dash-mobile-menu-btn"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle Navigation Menu"
           >
-            <LogOut size={14} />
-            <span>Sign Out</span>
+            {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
+
+        {/* Mobile Navigation Drawer */}
+        {isMobileMenuOpen && (
+          <div className="dash-mobile-drawer">
+            <div className="dashboard-role-badge" style={{ alignSelf: 'flex-start', marginBottom: '8px' }}>
+              <IconComp size={14} style={{ display: 'inline', marginRight: '6px', verticalAlign: 'middle' }} />
+              <span>Active: {role.label} Workspace</span>
+            </div>
+
+            <div style={{ fontSize: '11px', color: 'var(--sq-text-muted)', textTransform: 'uppercase', marginTop: '4px' }}>
+              Switch Workspace Role:
+            </div>
+            <div className="dash-mobile-role-grid">
+              {Object.values(rolesConfig).map((r) => (
+                <button
+                  key={r.id}
+                  onClick={() => {
+                    handleRoleSwitch(r.id);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`dash-mobile-role-btn ${r.id === role.id ? 'active' : ''}`}
+                >
+                  {r.label}
+                </button>
+              ))}
+            </div>
+
+            <button
+              onClick={() => {
+                handleSignOut();
+                setIsMobileMenuOpen(false);
+              }}
+              className="dash-mobile-logout-btn"
+            >
+              <LogOut size={16} />
+              <span>Sign Out</span>
+            </button>
+          </div>
+        )}
       </nav>
 
       {/* Hero Welcome Banner */}
@@ -261,29 +319,16 @@ export const DashboardPage = () => {
             <span>Analysis Tools</span>
           </h2>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '24px' }}>
+          <div className="dash-tools-list">
             {role.focusAreas.map((tool) => (
               <button
                 key={tool.id}
                 onClick={() => setActiveToolId(tool.id)}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  padding: '10px 14px',
-                  borderRadius: '6px',
-                  background: activeToolId === tool.id ? 'var(--sq-blue)' : 'rgba(0, 22, 46, 0.6)',
-                  border: activeToolId === tool.id ? '1px solid var(--sq-blue-hover)' : '1px solid var(--sq-border)',
-                  color: 'var(--sq-white)',
-                  fontSize: '13px',
-                  fontWeight: activeToolId === tool.id ? '600' : '400',
-                  textAlign: 'left',
-                  cursor: 'pointer',
-                  transition: 'all 180ms ease'
-                }}
+                aria-label={`Select tool: ${tool.label}`}
+                className={`dash-tool-btn ${activeToolId === tool.id ? 'active' : ''}`}
               >
                 <span>{tool.label}</span>
-                <ChevronRight size={14} style={{ opacity: activeToolId === tool.id ? 1 : 0.4 }} />
+                <ChevronRight size={14} className="dash-tool-chevron" style={{ opacity: activeToolId === tool.id ? 1 : 0.4 }} />
               </button>
             ))}
           </div>

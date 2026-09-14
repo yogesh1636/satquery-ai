@@ -813,6 +813,114 @@ body {
   color: var(--sq-cyan);
 }
 
+/* Dashboard Nav & Tool Styles */
+.dash-nav-desktop {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.dash-mobile-menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: rgba(0, 22, 46, 0.8);
+  border: 1px solid var(--sq-border);
+  border-radius: var(--sq-radius-sm);
+  color: var(--sq-white);
+  cursor: pointer;
+}
+
+.dash-mobile-drawer {
+  width: 100%;
+  padding-top: 14px;
+  margin-top: 12px;
+  border-top: 1px solid var(--sq-border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dash-mobile-role-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.dash-mobile-role-btn {
+  min-height: 44px;
+  padding: 8px 12px;
+  border-radius: var(--sq-radius-sm);
+  border: 1px solid var(--sq-border);
+  background: rgba(0, 22, 46, 0.8);
+  color: var(--sq-text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--sq-transition);
+}
+
+.dash-mobile-role-btn.active {
+  border-color: var(--sq-blue);
+  background: rgba(9, 122, 254, 0.25);
+  color: var(--sq-white);
+  font-weight: 600;
+}
+
+.dash-mobile-logout-btn {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 4px;
+  background: rgba(255, 82, 82, 0.15);
+  border: 1px solid var(--sq-error);
+  color: var(--sq-white);
+  border-radius: var(--sq-radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dash-tools-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.dash-tool-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  min-height: 44px;
+  border-radius: var(--sq-radius-sm);
+  background: rgba(0, 22, 46, 0.6);
+  border: 1px solid var(--sq-border);
+  color: var(--sq-white);
+  font-size: 13px;
+  font-weight: 400;
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--sq-transition);
+}
+
+.dash-tool-btn:hover {
+  border-color: var(--sq-blue-mid);
+  background: rgba(9, 122, 254, 0.1);
+}
+
+.dash-tool-btn.active {
+  background: var(--sq-blue);
+  border-color: var(--sq-blue-hover);
+  font-weight: 600;
+}
+
 /* Keyboard Accessibility Focus Rings */
 :focus-visible {
   outline: 2px solid var(--sq-blue) !important;
@@ -823,44 +931,58 @@ button, input, select, textarea, a.btn-primary, a.btn-social {
   min-height: 44px;
 }
 
-/* Responsive Styles */
+/* Responsive Breakpoint Layouts */
 @media (max-width: 1024px) {
   .auth-split-wrapper {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 20px;
   }
   
   .visual-panel {
-    min-height: 300px;
-    padding: 28px;
+    min-height: 220px;
+    padding: 24px;
   }
 
   .hero-heading {
-    font-size: 32px;
+    font-size: 28px;
   }
 
   .dashboard-layout-main {
     grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 16px;
   }
 
-  .dashboard-nav {
-    height: auto;
-    padding: 16px 20px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+  .dash-nav-desktop {
+    display: none;
   }
 
-  .dashboard-nav > div {
-    flex-wrap: wrap;
-    width: 100%;
-    justify-content: space-between;
+  .dash-mobile-menu-btn {
+    display: flex;
+  }
+
+  .dash-tools-list {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    margin-bottom: 16px;
+    scroll-snap-type: x mandatory;
+  }
+
+  .dash-tool-btn {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    white-space: nowrap;
+  }
+
+  .dash-tool-chevron {
+    display: none;
   }
 }
 
 @media (max-width: 640px) {
   .main-content {
-    padding: 16px;
+    padding: 12px;
   }
 
   .roles-grid {
@@ -869,18 +991,18 @@ button, input, select, textarea, a.btn-primary, a.btn-social {
 
   .footer-content {
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
     text-align: center;
   }
 
   .auth-card {
-    padding: 24px 20px;
+    padding: 20px 16px;
   }
 
   .header-nav {
-    padding: 16px;
+    padding: 14px 16px;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
     align-items: flex-start;
   }
 
@@ -888,4 +1010,9 @@ button, input, select, textarea, a.btn-primary, a.btn-social {
     font-size: 11px;
     flex-wrap: wrap;
   }
+
+  .feature-row {
+    display: none;
+  }
 }
+
