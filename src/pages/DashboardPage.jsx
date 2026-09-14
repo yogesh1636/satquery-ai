@@ -91,17 +91,17 @@ export const DashboardPage = () => {
   const handleExportData = () => {
     const timestamp = new Date().toISOString();
     const csvContent = [
-      ['SatQuery AI Export Metadata'],
+      ['SatQuery AI Export Metadata', 'Value'],
       ['Timestamp', timestamp],
       ['Role Workspace', role.label],
       ['Active Tool', activeToolId],
       ['Dataset', activeDataset.name],
       ['Resolution', resolution],
       ['Selected Layer', selectedLayer],
-      ['Bands', selectedBands.join('; ')],
-      [''],
-      ['Metrics Overview'],
-      ...currentAnalytics.map(a => [a.name, a.change, a.status])
+      ['Bands', `"${selectedBands.join('; ')}"`],
+      ['', ''],
+      ['Metric Name', 'Value / Change', 'Status'],
+      ...currentAnalytics.map(a => [`"${a.name}"`, `"${a.change}"`, `"${a.status}"`])
     ].map(e => e.join(',')).join('\n');
 
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
@@ -114,7 +114,7 @@ export const DashboardPage = () => {
     document.body.removeChild(link);
 
     // Trigger Toast
-    setToast('✓ Data exported successfully');
+    setToast('✓ Data exported successfully (CSV)');
     setTimeout(() => setToast(null), 3000);
   };
 

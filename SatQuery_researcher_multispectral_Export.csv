@@ -1,0 +1,13 @@
+SatQuery AI Export Metadata
+Timestamp,2026-09-14T06:22:52.874Z
+Role Workspace,Researcher
+Active Tool,multispectral
+Dataset,Sentinel-2 L2A
+Resolution,0.5m / px
+Selected Layer,Multispectral RGB
+Bands,NIR (Band 8); Red (Band 4); Green (Band 3)
+
+Metrics Overview
+NDVI Index Vegetation Trend,+14.2%,Optimal
+Thermal Anomaly Monitoring,-2.1%,Stable
+Coastal Erosion Rate,+0.8mm/yr,Monitored
