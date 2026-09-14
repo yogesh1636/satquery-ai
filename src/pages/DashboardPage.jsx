@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { getRoleById, rolesConfig } from '../config/rolesConfig';
 import { BrandLogo } from '../components/auth/BrandLogo';
 import { FooterStrip } from '../components/layout/FooterStrip';
+import { EARTH_BG_URL } from '../config/assets';
 
 // Subviews
 import { MultispectralView } from '../components/dashboard/MultispectralView';
@@ -374,7 +375,7 @@ export const DashboardPage = () => {
                       setSelectedBands={setSelectedBands}
                     />
                     <div style={{ position: 'relative', height: '320px', margin: '0 16px' }}>
-                      <img src="/assets/earth_remote_sensing_bg.jpg" alt="Remote Sensing View" className="map-view-img" style={{ borderRadius: '8px', border: '1px solid var(--sq-border)' }} />
+                      <img src={EARTH_BG_URL} alt="Remote Sensing View" className="map-view-img" style={{ borderRadius: '8px', border: '1px solid var(--sq-border)' }} />
                     </div>
                   </div>
                 )}

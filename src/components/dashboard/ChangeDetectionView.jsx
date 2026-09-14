@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Sliders, AlertTriangle, ShieldCheck, Calendar, ArrowRight } from 'lucide-react';
+import { EARTH_BG_URL } from '../../config/assets';
 
 export const ChangeDetectionView = ({ activeDataset }) => {
   const [sliderPos, setSliderPos] = useState(50);
@@ -79,7 +80,7 @@ export const ChangeDetectionView = ({ activeDataset }) => {
         }}
       >
         <img
-          src="/assets/earth_remote_sensing_bg.jpg"
+          src={EARTH_BG_URL}
           alt="After Analysis"
           style={{
             position: 'absolute',
@@ -102,7 +103,7 @@ export const ChangeDetectionView = ({ activeDataset }) => {
           }}
         >
           <img
-            src="/assets/earth_remote_sensing_bg.jpg"
+            src={EARTH_BG_URL}
             alt="Before Baseline"
             style={{
               width: '1000px',

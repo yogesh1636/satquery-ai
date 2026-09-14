@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Satellite, Sparkles, Activity, ShieldCheck, Cpu } from 'lucide-react';
+import { EARTH_BG_URL } from '../../config/assets';
 
 export const EarthVisual = ({ headline, highlightText, subtitle, features, quote }) => {
   const canvasRef = useRef(null);
@@ -84,7 +85,7 @@ export const EarthVisual = ({ headline, highlightText, subtitle, features, quote
     <div className="visual-panel">
       {/* Background Satellite Earth Image */}
       <img
-        src="/assets/earth_remote_sensing_bg.jpg"
+        src={EARTH_BG_URL}
         alt="SatQuery AI Earth Remote Sensing View"
         className="visual-bg-image"
       />

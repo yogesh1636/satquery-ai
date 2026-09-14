@@ -5,6 +5,7 @@ import { FooterStrip } from '../components/layout/FooterStrip';
 import { PrimaryButton } from '../components/auth/PrimaryButton';
 import { AuthCard } from '../components/auth/AuthCard';
 import { Globe, ShieldCheck, Sparkles } from 'lucide-react';
+import { EARTH_BG_URL } from '../config/assets';
 
 export const SuccessPage = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ export const SuccessPage = () => {
       {/* Background imagery */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden' }}>
         <img
-          src="/assets/earth_remote_sensing_bg.jpg"
+          src={EARTH_BG_URL}
           alt="SatQuery Earth"
           style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.35 }}
         />
