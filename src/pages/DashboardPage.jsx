@@ -4,6 +4,7 @@ import { getRoleById, rolesConfig } from '../config/rolesConfig';
 import { BrandLogo } from '../components/auth/BrandLogo';
 import { FooterStrip } from '../components/layout/FooterStrip';
 import { EARTH_BG_URL } from '../config/assets';
+import { setUserRole, logoutUser } from '../utils/auth';
 
 // Subviews
 import { MultispectralView } from '../components/dashboard/MultispectralView';
@@ -76,14 +77,13 @@ export const DashboardPage = () => {
 
   // Handle Role Switch
   const handleRoleSwitch = (newRoleId) => {
-    localStorage.setItem('satquery_role', newRoleId);
-    localStorage.setItem('satquery_user_role', newRoleId);
+    setUserRole(newRoleId);
     navigate(`/dashboard/${newRoleId}`);
   };
 
   // Handle Sign Out (Preserves role preference, clears active session)
   const handleSignOut = () => {
-    localStorage.setItem('satquery_is_authenticated', 'false');
+    logoutUser();
     navigate('/login', { replace: true });
   };
 

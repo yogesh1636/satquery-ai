@@ -5,12 +5,11 @@ import { FooterStrip } from '../components/layout/FooterStrip';
 import { RoleCard } from '../components/auth/RoleCard';
 import { PrimaryButton } from '../components/auth/PrimaryButton';
 import { rolesConfig } from '../config/rolesConfig';
+import { setUserRole, getUserRole, loginUser } from '../utils/auth';
 
 export const OnboardingRolePage = () => {
   const navigate = useNavigate();
-  const [selectedRole, setSelectedRole] = useState(
-    localStorage.getItem('satquery_user_role') || localStorage.getItem('satquery_role') || ''
-  );
+  const [selectedRole, setSelectedRole] = useState(getUserRole() || '');
   const [loading, setLoading] = useState(false);
 
   const handleSelectRole = (roleId) => {
@@ -21,9 +20,7 @@ export const OnboardingRolePage = () => {
     if (!selectedRole) return;
 
     setLoading(true);
-    localStorage.setItem('satquery_role', selectedRole);
-    localStorage.setItem('satquery_user_role', selectedRole);
-    localStorage.setItem('satquery_is_authenticated', 'true');
+    loginUser(selectedRole);
 
     setTimeout(() => {
       setLoading(false);

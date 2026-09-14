@@ -9,6 +9,7 @@ import { AuthInput } from '../components/auth/AuthInput';
 import { PasswordInput } from '../components/auth/PasswordInput';
 import { PrimaryButton } from '../components/auth/PrimaryButton';
 import { SocialLoginButton } from '../components/auth/SocialLoginButton';
+import { loginUser, getUserRole } from '../utils/auth';
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -43,8 +44,8 @@ export const LoginPage = () => {
     // Mock API authentication call
     setTimeout(() => {
       setLoading(false);
-      localStorage.setItem('satquery_is_authenticated', 'true');
-      const savedRole = localStorage.getItem('satquery_user_role') || localStorage.getItem('satquery_role');
+      loginUser();
+      const savedRole = getUserRole();
       if (savedRole) {
         navigate(`/dashboard/${savedRole}`);
       } else {
@@ -166,8 +167,8 @@ export const LoginPage = () => {
               <SocialLoginButton
                 provider="google"
                 onClick={() => {
-                  localStorage.setItem('satquery_is_authenticated', 'true');
-                  const savedRole = localStorage.getItem('satquery_user_role') || localStorage.getItem('satquery_role');
+                  loginUser();
+                  const savedRole = getUserRole();
                   if (savedRole) {
                     navigate(`/dashboard/${savedRole}`);
                   } else {
@@ -178,8 +179,8 @@ export const LoginPage = () => {
               <SocialLoginButton
                 provider="microsoft"
                 onClick={() => {
-                  localStorage.setItem('satquery_is_authenticated', 'true');
-                  const savedRole = localStorage.getItem('satquery_user_role') || localStorage.getItem('satquery_role');
+                  loginUser();
+                  const savedRole = getUserRole();
                   if (savedRole) {
                     navigate(`/dashboard/${savedRole}`);
                   } else {
