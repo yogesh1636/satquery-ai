@@ -10,6 +10,7 @@ import { PasswordInput } from '../components/auth/PasswordInput';
 import { PrimaryButton } from '../components/auth/PrimaryButton';
 import { SocialLoginButton } from '../components/auth/SocialLoginButton';
 import { loginUser, getUserRole } from '../utils/auth';
+import { loginWithGoogle, loginWithMicrosoft } from '../utils/oauth';
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ export const LoginPage = () => {
   const [rememberMe, setRememberMe] = useState(true);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [oauthLoading, setOauthLoading] = useState(null); // 'google' | 'microsoft' | null
   const [healthStatus, setHealthStatus] = useState('SYSTEM ONLINE · GIS READY · VLM READY');
 
   // Poll health state
@@ -70,6 +72,58 @@ export const LoginPage = () => {
         navigate('/register/choose-role');
       }
     }, 600);
+  };
+
+  // Real Google OAuth Handler
+  const handleGoogleLogin = async () => {
+    setError('');
+    setOauthLoading('google');
+    const res = await loginWithGoogle();
+    setOauthLoading(null);
+
+    if (res.success) {
+      loginUser(null, {
+        fullName: res.user.name,
+        email: res.user.email,
+        accountType: getUserRole() || 'researcher',
+        mfaEnabled: false,
+        emailVerified: true
+      });
+      const savedRole = getUserRole();
+      if (savedRole) {
+        navigate(`/dashboard/${savedRole}`);
+      } else {
+        navigate('/register/choose-role');
+      }
+    } else {
+      setError(res.message);
+    }
+  };
+
+  // Real Microsoft OAuth Handler
+  const handleMicrosoftLogin = async () => {
+    setError('');
+    setOauthLoading('microsoft');
+    const res = await loginWithMicrosoft();
+    setOauthLoading(null);
+
+    if (res.success) {
+      loginUser(null, {
+        fullName: res.user.name,
+        email: res.user.email,
+        accountType: getUserRole() || 'researcher',
+        mfaEnabled: false,
+        emailVerified: true
+      });
+      const savedRole = getUserRole();
+      if (savedRole) {
+        navigate(`/dashboard/${savedRole}`);
+      } else {
+        navigate('/register/choose-role');
+      }
+    } else {
+      setError(res.message);
+    }
   };
 
   return (
@@ -224,27 +278,15 @@ export const LoginPage = () => {
 
               <SocialLoginButton
                 provider="google"
-                onClick={() => {
-                  loginUser();
-                  const savedRole = getUserRole();
-                  if (savedRole) {
-                    navigate(`/dashboard/${savedRole}`);
-                  } else {
-                    navigate('/register/choose-role');
-                  }
-                }}
+                loading={oauthLoading === 'google'}
+                disabled={Boolean(oauthLoading)}
+                onClick={handleGoogleLogin}
               />
               <SocialLoginButton
                 provider="microsoft"
-                onClick={() => {
-                  loginUser();
-                  const savedRole = getUserRole();
-                  if (savedRole) {
-                    navigate(`/dashboard/${savedRole}`);
-                  } else {
-                    navigate('/register/choose-role');
-                  }
-                }}
+                loading={oauthLoading === 'microsoft'}
+                disabled={Boolean(oauthLoading)}
+                onClick={handleMicrosoftLogin}
               />
 
               <p className="bottom-text">

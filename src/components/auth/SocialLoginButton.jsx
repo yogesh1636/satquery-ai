@@ -1,10 +1,23 @@
 import React from 'react';
 
-export const SocialLoginButton = ({ provider, onClick }) => {
+export const SocialLoginButton = ({ provider, onClick, loading = false, disabled = false }) => {
   const isGoogle = provider === 'google';
+  const label = loading
+    ? `Connecting to ${isGoogle ? 'Google' : 'Microsoft'}...`
+    : `Continue with ${isGoogle ? 'Google' : 'Microsoft'}`;
 
   return (
-    <button type="button" className="btn-social" onClick={onClick}>
+    <button
+      type="button"
+      className="btn-social"
+      onClick={onClick}
+      disabled={disabled || loading}
+      style={{
+        opacity: disabled || loading ? 0.7 : 1,
+        cursor: disabled || loading ? 'not-allowed' : 'pointer',
+        transition: 'all 150ms ease'
+      }}
+    >
       {isGoogle ? (
         <svg width="18" height="18" viewBox="0 0 24 24">
           <path
@@ -32,7 +45,9 @@ export const SocialLoginButton = ({ provider, onClick }) => {
           <path fill="#ffba08" d="M12 12h10v10H12z" />
         </svg>
       )}
-      <span>Continue with {isGoogle ? 'Google' : 'Microsoft'}</span>
+      <span>{label}</span>
     </button>
   );
 };
+
+export default SocialLoginButton;
