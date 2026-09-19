@@ -1,7 +1,9 @@
 import React from 'react';
 import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { LoginPage } from './pages/LoginPage';
-import { RegisterPage } from './pages/RegisterPage';
+import { ChooseRolePage } from './pages/ChooseRolePage';
+import { RoleRegisterPage } from './pages/RoleRegisterPage';
+import { VerifyEmailPage } from './pages/VerifyEmailPage';
 import { OnboardingRolePage } from './pages/OnboardingRolePage';
 import { ForgotPasswordPage } from './pages/ForgotPasswordPage';
 import { ResetPasswordPage } from './pages/ResetPasswordPage';
@@ -61,7 +63,10 @@ export function App() {
         
         {/* Public Auth Routes */}
         <Route path="/login" element={<PublicOnlyRoute><LoginPage /></PublicOnlyRoute>} />
-        <Route path="/register" element={<PublicOnlyRoute><RegisterPage /></PublicOnlyRoute>} />
+        <Route path="/register" element={<Navigate to="/register/choose-role" replace />} />
+        <Route path="/register/choose-role" element={<PublicOnlyRoute><ChooseRolePage /></PublicOnlyRoute>} />
+        <Route path="/register/:roleId" element={<PublicOnlyRoute><RoleRegisterPage /></PublicOnlyRoute>} />
+        <Route path="/verify-email" element={<VerifyEmailPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         

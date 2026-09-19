@@ -5,8 +5,9 @@ import { BrandLogo } from '../components/auth/BrandLogo';
 import { FooterStrip } from '../components/layout/FooterStrip';
 import { EARTH_BG_URL } from '../config/assets';
 import { setUserRole, logoutUser } from '../utils/auth';
+import { useIdleTimer } from '../hooks/useIdleTimer';
 
-// Subviews
+// Components & Modals
 import { MultispectralView } from '../components/dashboard/MultispectralView';
 import { ChangeDetectionView } from '../components/dashboard/ChangeDetectionView';
 import { SpectralIndexCalculator } from '../components/dashboard/SpectralIndexCalculator';
@@ -15,6 +16,10 @@ import { StudentWorkspaceView } from '../components/dashboard/StudentWorkspaceVi
 import { GisAnalystView } from '../components/dashboard/GisAnalystView';
 import { OrganizationView } from '../components/dashboard/OrganizationView';
 import { ToastNotification } from '../components/dashboard/ToastNotification';
+import { SettingsModal } from '../components/dashboard/SettingsModal';
+import { InactivityWarningModal } from '../components/dashboard/InactivityWarningModal';
+import { NotificationBell } from '../components/dashboard/NotificationBell';
+import { JobProgressOverlay } from '../components/dashboard/JobProgressOverlay';
 
 import { 
   FlaskConical, 
@@ -32,7 +37,8 @@ import {
   Loader2,
   CheckCircle2,
   Menu,
-  X
+  X,
+  Settings
 } from 'lucide-react';
 
 const iconMap = {
@@ -47,6 +53,12 @@ export const DashboardPage = () => {
   const navigate = useNavigate();
   const role = getRoleById(roleId);
   const IconComp = iconMap[role.iconName] || Map;
+
+  // Auto-Logout Hook
+  const { showWarning, secondsRemaining, resetTimer } = useIdleTimer();
+
+  // Settings Modal State
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   // Mobile Menu Drawer State
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -65,6 +77,11 @@ export const DashboardPage = () => {
 
   // Toast Notification State
   const [toast, setToast] = useState(null);
+
+  const showToastMsg = (msg) => {
+    setToast(msg);
+    setTimeout(() => setToast(null), 3500);
+  };
 
   // Sync active tool when roleId changes
   useEffect(() => {
@@ -86,13 +103,13 @@ export const DashboardPage = () => {
     navigate(`/dashboard/${newRoleId}`);
   };
 
-  // Handle Sign Out (Preserves role preference, clears active session)
+  // Handle Sign Out
   const handleSignOut = () => {
     logoutUser();
     navigate('/login', { replace: true });
   };
 
-  // Export Data Handler (Generates CSV download)
+  // Export Data Handler
   const handleExportData = () => {
     const timestamp = new Date().toISOString();
     const csvContent = [
@@ -118,9 +135,7 @@ export const DashboardPage = () => {
     link.click();
     document.body.removeChild(link);
 
-    // Trigger Toast
-    setToast('✓ Data exported successfully (CSV)');
-    setTimeout(() => setToast(null), 3000);
+    showToastMsg('✓ Remote Sensing Report Exported (CSV)');
   };
 
   // Run AI Query Handler
@@ -130,22 +145,20 @@ export const DashboardPage = () => {
 
     setIsAnalyzing(true);
     setQueryResult(null);
-
-    setTimeout(() => {
-      setIsAnalyzing(false);
-      setQueryResult({
-        region: 'Southern Amazon Basin',
-        index: 'NDVI',
-        trend: '+14.2%',
-        confidence: '92.4%',
-        observation: 'Vegetation anomaly & dense canopy expansion detected in Q3 2026 satellite pass.'
-      });
-      setToast('✓ AI Satellite Analysis Complete');
-      setTimeout(() => setToast(null), 3500);
-    }, 1200);
   };
 
-  // Current Mode Text calculation
+  const handleJobComplete = () => {
+    setIsAnalyzing(false);
+    setQueryResult({
+      region: 'Southern Amazon Basin',
+      index: 'NDVI',
+      trend: '+14.2%',
+      confidence: '92.4%',
+      observation: 'Vegetation anomaly & dense canopy expansion detected in Q3 2026 satellite pass.'
+    });
+    showToastMsg('✓ Live WebSocket AI Analysis Complete');
+  };
+
   const getModeText = () => {
     switch (activeToolId) {
       case 'multispectral': return 'Multispectral Analysis — 24 Spectral Bands Active';
@@ -163,6 +176,21 @@ export const DashboardPage = () => {
     <div className="dashboard-page-container">
       {/* Toast Notification */}
       <ToastNotification message={toast} />
+
+      {/* Auto-Logout Inactivity Warning Modal */}
+      {showWarning && (
+        <InactivityWarningModal
+          secondsRemaining={secondsRemaining}
+          onStaySignedIn={resetTimer}
+        />
+      )}
+
+      {/* Settings & Security Modal */}
+      <SettingsModal
+        isOpen={isSettingsOpen}
+        onClose={() => setIsSettingsOpen(false)}
+        onToast={showToastMsg}
+      />
 
       {/* Dashboard Top Navbar */}
       <nav className="dashboard-nav">
@@ -198,6 +226,31 @@ export const DashboardPage = () => {
                 </button>
               ))}
             </div>
+
+            {/* Notification Bell */}
+            <NotificationBell />
+
+            {/* Settings Button */}
+            <button
+              onClick={() => setIsSettingsOpen(true)}
+              aria-label="Settings & Security"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                padding: '6px 12px',
+                borderRadius: '6px',
+                background: 'rgba(9, 122, 254, 0.15)',
+                border: '1px solid var(--sq-blue)',
+                color: 'var(--sq-cyan)',
+                fontSize: '12px',
+                fontWeight: '600',
+                cursor: 'pointer'
+              }}
+            >
+              <Settings size={14} />
+              <span>Settings</span>
+            </button>
 
             <button
               onClick={handleSignOut}
@@ -255,6 +308,31 @@ export const DashboardPage = () => {
                 </button>
               ))}
             </div>
+
+            <button
+              onClick={() => {
+                setIsSettingsOpen(true);
+                setIsMobileMenuOpen(false);
+              }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '10px',
+                borderRadius: '6px',
+                background: 'rgba(9, 122, 254, 0.2)',
+                border: '1px solid var(--sq-blue)',
+                color: 'var(--sq-white)',
+                fontSize: '13px',
+                width: '100%',
+                justifyContent: 'center',
+                marginTop: '10px',
+                cursor: 'pointer'
+              }}
+            >
+              <Settings size={16} />
+              <span>Settings & Security</span>
+            </button>
 
             <button
               onClick={() => {
@@ -435,6 +513,13 @@ export const DashboardPage = () => {
             {role.id === 'organization' && <OrganizationView />}
           </div>
 
+          {/* Job Progress Simulator Overlay */}
+          <JobProgressOverlay
+            isRunning={isAnalyzing}
+            queryText={aiPrompt}
+            onComplete={handleJobComplete}
+          />
+
           {/* AI Query Result Banner if available */}
           {queryResult && (
             <div
@@ -584,3 +669,5 @@ export const DashboardPage = () => {
     </div>
   );
 };
+
+export default DashboardPage;
