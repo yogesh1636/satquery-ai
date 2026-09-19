@@ -4,13 +4,14 @@ import { Play, Sparkles, Cpu, CheckCircle2, X } from 'lucide-react';
 import { HeroVisual } from './HeroVisual';
 import { DemoModal } from './DemoModal';
 import { isAuthenticated, getUserRole } from '../../utils/auth';
+import { HERO_PREVIEW_IMAGE_URL } from '../../config/assets';
 
 const PREVIEW_DATASETS = [
   {
     id: 'sentinel2-rgb',
     title: 'Sentinel-2 RGB',
     subtitle: '10m True Color Optical',
-    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=600&auto=format&fit=crop',
+    image: HERO_PREVIEW_IMAGE_URL,
     details: 'Sentinel-2 Band 4-3-2 True Color composite for natural landscape observation.'
   },
   {

@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Globe, Orbit } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { LOGO_IMAGE_URL } from '../../config/assets';
 
 export const BrandLogo = ({ size = 'md', interactive = true, linkTo = '/' }) => {
   const isLarge = size === 'lg';
+  const [imageError, setImageError] = useState(false);
 
   const logoContent = (
     <div style={{ display: 'flex', alignItems: 'center', gap: '12px', cursor: interactive ? 'pointer' : 'default' }}>
@@ -19,14 +21,26 @@ export const BrandLogo = ({ size = 'md', interactive = true, linkTo = '/' }) => 
           justifyContent: 'center',
           color: 'var(--sq-cyan)',
           boxShadow: '0 0 16px rgba(60, 146, 197, 0.3)',
-          position: 'relative'
+          position: 'relative',
+          overflow: 'hidden'
         }}
       >
-        <Globe size={isLarge ? 24 : 20} />
-        <Orbit 
-          size={isLarge ? 30 : 24} 
-          style={{ position: 'absolute', color: 'var(--sq-blue)', opacity: 0.8 }} 
-        />
+        {!imageError ? (
+          <img
+            src={LOGO_IMAGE_URL}
+            alt="Orbit IQ Logo"
+            onError={() => setImageError(true)}
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        ) : (
+          <>
+            <Globe size={isLarge ? 24 : 20} />
+            <Orbit 
+              size={isLarge ? 30 : 24} 
+              style={{ position: 'absolute', color: 'var(--sq-blue)', opacity: 0.8 }} 
+            />
+          </>
+        )}
       </div>
       <div>
         <div style={{ 
