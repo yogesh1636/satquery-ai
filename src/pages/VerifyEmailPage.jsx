@@ -11,7 +11,7 @@ export const VerifyEmailPage = () => {
   const navigate = useNavigate();
   const pending = getPendingRegistration() || {
     fullName: 'New User',
-    email: 'user@satquery.ai',
+    email: 'user@orbitiq.ai',
     accountType: 'researcher'
   };
 

@@ -67,7 +67,7 @@ export const RegisterPage = () => {
           <EarthVisual
             headline="A Smarter"
             highlightText="Planet Starts With You."
-            subtitle="Join SatQuery AI and explore the power of satellite imagery with AI."
+            subtitle="Join OrbitIQ and explore the power of satellite imagery with AI."
             features={['Access Global Data', 'AI-Powered Analysis', 'Create Real Impact']}
             quote="People. Data. A Better Tomorrow."
           />
@@ -75,7 +75,7 @@ export const RegisterPage = () => {
           {/* Right Registration Card */}
           <div className="auth-card-container">
             <AuthCard>
-              <h2 className="auth-heading">Create your<br />SatQuery AI account</h2>
+              <h2 className="auth-heading">Create your<br />OrbitIQ account</h2>
               <p className="subtitle" style={{ marginBottom: '20px' }}>
                 Start exploring satellite imagery with AI.
               </p>

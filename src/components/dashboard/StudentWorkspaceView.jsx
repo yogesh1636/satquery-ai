@@ -9,7 +9,7 @@ export const StudentWorkspaceView = ({ activeTool: _activeTool }) => {
     { title: '1. Satellite Orbit & Sensor Basics', desc: 'Learn Sun-synchronous orbits & multispectral bands' },
     { title: '2. True Color vs False Color RGB', desc: 'Understanding NIR Band 8 overlay for vegetation' },
     { title: '3. NDVI Index Calculation', desc: 'Compute (NIR - Red) / (NIR + Red) for crop health' },
-    { title: '4. AI Natural Language Querying', desc: 'Ask SatQuery AI to detect changes over Amazon' }
+    { title: '4. AI Natural Language Querying', desc: 'Ask OrbitIQ to detect changes over Amazon' }
   ];
 
   return (

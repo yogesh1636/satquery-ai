@@ -86,7 +86,7 @@ export const EarthVisual = ({ headline, highlightText, subtitle, features, quote
       {/* Background Satellite Earth Image */}
       <img
         src={EARTH_BG_URL}
-        alt="SatQuery AI Earth Remote Sensing View"
+        alt="OrbitIQ Earth Remote Sensing View"
         className="visual-bg-image"
       />
       

@@ -1,5 +1,6 @@
 import React from 'react';
 import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { LandingPage } from './pages/LandingPage';
 import { LoginPage } from './pages/LoginPage';
 import { ChooseRolePage } from './pages/ChooseRolePage';
 import { RoleRegisterPage } from './pages/RoleRegisterPage';
@@ -59,7 +60,8 @@ export function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" replace />} />
+        {/* OrbitIQ Product Landing Page */}
+        <Route path="/" element={<LandingPage />} />
         
         {/* Public Auth Routes */}
         <Route path="/login" element={<PublicOnlyRoute><LoginPage /></PublicOnlyRoute>} />
@@ -79,7 +81,7 @@ export function App() {
         <Route path="/dashboard" element={<DashboardRedirector />} />
         
         {/* Fallback Catch-all Route */}
-        <Route path="*" element={<Navigate to="/login" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
   );

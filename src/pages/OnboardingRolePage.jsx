@@ -42,7 +42,7 @@ export const OnboardingRolePage = () => {
             </div>
 
             <h1 className="hero-heading" style={{ fontSize: '32px', marginBottom: '8px' }}>
-              How will you use SatQuery AI?
+              How will you use OrbitIQ?
             </h1>
             <p className="subtitle">
               This helps us personalize your remote sensing workspace & AI models.

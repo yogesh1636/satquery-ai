@@ -152,7 +152,7 @@ export const SettingsModal = ({ isOpen, onClose, onToast }) => {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = `SatQuery_Account_Data_Archive_${Date.now()}.json`;
+    link.download = `OrbitIQ_Account_Data_Archive_${Date.now()}.json`;
     link.click();
     onToast('✓ Account data archive exported (JSON)');
   };
@@ -497,7 +497,7 @@ export const SettingsModal = ({ isOpen, onClose, onToast }) => {
                     </h3>
                   </div>
                   <p style={{ fontSize: '12px', color: 'var(--sq-text-secondary)', marginBottom: '14px' }}>
-                    Access SatQuery VLM & Raster endpoints programmatically via Python SDK or REST API.
+                    Access OrbitIQ VLM & Raster endpoints programmatically via Python SDK or REST API.
                   </p>
 
                   <form onSubmit={handleCreateApiKey} style={{ display: 'flex', gap: '8px', marginBottom: '14px' }}>
@@ -655,7 +655,7 @@ export const SettingsModal = ({ isOpen, onClose, onToast }) => {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                 <h3 style={{ fontSize: '16px', fontWeight: '700', color: 'var(--sq-white)' }}>Help & System Info</h3>
                 <div style={{ padding: '16px', borderRadius: '10px', background: 'rgba(0, 22, 46, 0.6)', border: '1px solid var(--sq-border)' }}>
-                  <div>App Version: <strong>SatQuery AI v1.0.0 (Build 2026.09)</strong></div>
+                  <div>App Version: <strong>OrbitIQ AI v1.0.0 (Build 2026.09)</strong></div>
                   <div>VLM Engine: <strong>PyTorch VLM Grounding Specialist v2.4</strong></div>
                   <div>Geospatial Backend: <strong>PostGIS 15 + Rasterio COG</strong></div>
                 </div>

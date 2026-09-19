@@ -48,7 +48,7 @@ export const ResetPasswordPage = () => {
           <EarthVisual
             headline="A Fresh Start"
             highlightText="for New Insights."
-            subtitle="Reset your password and continue your journey with SatQuery AI."
+            subtitle="Reset your password and continue your journey with OrbitIQ."
             features={['Enhanced Encryption', 'Instant Update', 'Account Safeguard']}
             quote="Same Mission. Stronger Together."
           />

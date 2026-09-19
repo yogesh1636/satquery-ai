@@ -28,7 +28,7 @@ export const ChooseRolePage = () => {
             </div>
 
             <h1 className="hero-heading" style={{ fontSize: '32px', marginBottom: '8px' }}>
-              Choose Your SatQuery AI Path
+              Choose Your OrbitIQ Path
             </h1>
             <p className="subtitle">
               Select your primary role to customize registration fields, AI specialist tools, and data presets.

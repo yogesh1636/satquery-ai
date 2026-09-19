@@ -26,7 +26,7 @@ export const SuccessPage = () => {
       <div style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden' }}>
         <img
           src={EARTH_BG_URL}
-          alt="SatQuery Earth"
+          alt="OrbitIQ Earth"
           style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.35 }}
         />
         <div
@@ -63,7 +63,7 @@ export const SuccessPage = () => {
                 Account Created!
               </h1>
               <h2 className="subtitle" style={{ fontSize: '16px', color: 'var(--sq-white)', fontWeight: '600', marginBottom: '12px' }}>
-                Welcome to SatQuery AI.
+                Welcome to OrbitIQ.
               </h2>
               <p className="subtitle" style={{ marginBottom: '28px', maxWidth: '380px', margin: '0 auto 28px auto' }}>
                 Your workspace is ready. Start analyzing satellite imagery with AI-powered insights.

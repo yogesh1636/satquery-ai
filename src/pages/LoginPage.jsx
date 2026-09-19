@@ -40,8 +40,8 @@ export const LoginPage = () => {
   }, []);
 
   const handleFillDemo = () => {
-    setEmail('demo@satquery.ai');
-    setPassword('SatQuery@2026');
+    setEmail('demo@orbitiq.ai');
+    setPassword('OrbitIQ@2026');
     setError('');
   };
 
@@ -222,8 +222,8 @@ export const LoginPage = () => {
                   </button>
                 </div>
                 <div style={{ color: 'var(--sq-text-secondary)', fontSize: '11px', display: 'flex', gap: '16px' }}>
-                  <div>Email: <strong style={{ color: 'var(--sq-white)' }}>demo@satquery.ai</strong></div>
-                  <div>Pass: <strong style={{ color: 'var(--sq-white)' }}>SatQuery@2026</strong></div>
+                  <div>Email: <strong style={{ color: 'var(--sq-white)' }}>demo@orbitiq.ai</strong></div>
+                  <div>Pass: <strong style={{ color: 'var(--sq-white)' }}>OrbitIQ@2026</strong></div>
                 </div>
               </div>
 
@@ -290,7 +290,7 @@ export const LoginPage = () => {
               />
 
               <p className="bottom-text">
-                New to SatQuery AI?{' '}
+                New to OrbitIQ?{' '}
                 <Link to="/register/choose-role" className="auth-link">
                   Create an account
                 </Link>

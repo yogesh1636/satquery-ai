@@ -19,7 +19,7 @@ const INITIAL_SESSIONS = [
   },
   {
     id: 'sess-mobile-1',
-    device: 'SatQuery Companion App — iOS 18',
+    device: 'OrbitIQ Companion App — iOS 18',
     ip: '49.207.215.12 (New Delhi, IN)',
     lastActive: '2 hours ago',
     isCurrent: false
@@ -76,7 +76,7 @@ export const getUserProfile = () => {
   const role = getUserRole();
   return {
     fullName: 'Alex Vance',
-    email: 'alex.vance@satquery.ai',
+    email: 'alex.vance@orbitiq.ai',
     accountType: role || 'researcher',
     institution: 'National Earth Science Institute',
     jobTitle: 'Senior Remote Sensing Specialist',

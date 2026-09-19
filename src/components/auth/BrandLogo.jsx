@@ -2,7 +2,7 @@ import React from 'react';
 import { Globe, Orbit } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-export const BrandLogo = ({ size = 'md', interactive = true }) => {
+export const BrandLogo = ({ size = 'md', interactive = true, linkTo = '/' }) => {
   const isLarge = size === 'lg';
 
   const logoContent = (
@@ -36,7 +36,7 @@ export const BrandLogo = ({ size = 'md', interactive = true }) => {
           letterSpacing: '-0.3px',
           lineHeight: '1.1'
         }}>
-          SatQuery <span style={{ color: 'var(--sq-cyan)' }}>AI</span>
+          Orbit<span style={{ color: 'var(--sq-cyan)' }}>IQ</span>
         </div>
         <div style={{ 
           fontSize: isLarge ? '11px' : '9px', 
@@ -53,7 +53,7 @@ export const BrandLogo = ({ size = 'md', interactive = true }) => {
 
   if (interactive) {
     return (
-      <Link to="/login" style={{ textDecoration: 'none' }}>
+      <Link to={linkTo} style={{ textDecoration: 'none' }}>
         {logoContent}
       </Link>
     );
@@ -61,3 +61,5 @@ export const BrandLogo = ({ size = 'md', interactive = true }) => {
 
   return logoContent;
 };
+
+export default BrandLogo;

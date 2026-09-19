@@ -113,7 +113,7 @@ export const DashboardPage = () => {
   const handleExportData = () => {
     const timestamp = new Date().toISOString();
     const csvContent = [
-      ['SatQuery AI Export Metadata', 'Value'],
+      ['OrbitIQ Export Metadata', 'Value'],
       ['Timestamp', timestamp],
       ['Role Workspace', role.label],
       ['Active Tool', activeToolId],
@@ -130,7 +130,7 @@ export const DashboardPage = () => {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.setAttribute('href', url);
-    link.setAttribute('download', `SatQuery_${role.id}_${activeToolId}_Export.csv`);
+    link.setAttribute('download', `OrbitIQ_${role.id}_${activeToolId}_Export.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -562,7 +562,7 @@ export const DashboardPage = () => {
               type="text"
               value={aiPrompt}
               onChange={(e) => setAiPrompt(e.target.value)}
-              placeholder="Ask SatQuery AI to analyze any satellite region on Earth..."
+              placeholder="Ask OrbitIQ to analyze any satellite region on Earth..."
               style={{
                 flex: 1,
                 background: 'transparent',
