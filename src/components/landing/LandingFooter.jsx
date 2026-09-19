@@ -51,7 +51,7 @@ export const LandingFooter = () => {
       </div>
 
       <div style={{ maxWidth: '1280px', margin: '40px auto 0 auto', paddingTop: '24px', borderTop: '1px solid rgba(27, 91, 149, 0.3)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px', fontSize: '12px', color: 'var(--sq-text-muted)' }}>
-        <div>© 2026 OrbitIQ. All rights reserved.</div>
+        <div>© 2026 Orbit IQ. All rights reserved.</div>
         <div>AI for a Smarter, Safer, More Sustainable Planet.</div>
       </div>
     </footer>

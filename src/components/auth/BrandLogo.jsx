@@ -36,16 +36,16 @@ export const BrandLogo = ({ size = 'md', interactive = true, linkTo = '/' }) => 
           letterSpacing: '-0.3px',
           lineHeight: '1.1'
         }}>
-          Orbit<span style={{ color: 'var(--sq-cyan)' }}>IQ</span>
+          Orbit <span style={{ color: 'var(--sq-cyan)' }}>IQ</span>
         </div>
         <div style={{ 
-          fontSize: isLarge ? '11px' : '9px', 
-          fontWeight: '500', 
+          fontSize: isLarge ? '10px' : '9px', 
+          fontWeight: '600', 
           color: 'var(--sq-cyan)',
           letterSpacing: '0.8px',
           textTransform: 'uppercase'
         }}>
-          Ask. Analyze. Explore.
+          From Satellites to Solutions
         </div>
       </div>
     </div>
